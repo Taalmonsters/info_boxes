@@ -1,0 +1,29 @@
+var setupInfoBoxes;
+
+setupInfoBoxes = function() {
+	if ($('div.info-group').length > 0) {
+		$('div.info-group').each(function(i, item) {
+			$(item).prepend('<a class="info-icon" href="#"><img src="<%= asset_path('info_icon.png') %>"></a>');
+		});
+		
+		$(document).on('mouseover', 'a.info-icon', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			$(this).parent().find('.info').first().addClass('active');
+		});
+		
+		$(document).on('mouseout', 'a.info-icon', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			$(this).parent().find('.info').first().removeClass('active');
+		});
+		
+		$(document).on('click', 'a.info-icon', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+		});
+	}
+};
+
+$(document).ready(setupInfoBoxes);
+$(document).on('page:load', setupInfoBoxes);
